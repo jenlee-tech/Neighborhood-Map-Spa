@@ -23,8 +23,7 @@ class App extends Component {
     const endPoint = "https://api.foursquare.com/v2/venues/explore?";
     const parameters = {
       //place keys here
-      client_id: "TPH0HARWJI330EF4O0RJIYJR2V3WNWPA03BXBQPO3MWUCQF3",
-      client_secret: "NRQQEB0M10YV10LZBC20OHFN2IV0NBB1FGKPGQCIENH4W5JG",
+
       query: "food",
       near: "Sydney",
       v: "20182507"
