@@ -22,6 +22,7 @@ class App extends Component {
   getVenues = () => {
     const endPoint = "https://api.foursquare.com/v2/venues/explore?";
     const parameters = {
+      //place keys here
       client_id: "TPH0HARWJI330EF4O0RJIYJR2V3WNWPA03BXBQPO3MWUCQF3",
       client_secret: "NRQQEB0M10YV10LZBC20OHFN2IV0NBB1FGKPGQCIENH4W5JG",
       query: "food",
@@ -42,11 +43,14 @@ class App extends Component {
 
   initMap = () => {
     var map = new window.google.maps.Map(document.getElementById("map"), {
-      center: {
-        lat: -34.397,
-        lng: 150.644
-      },
+      center: { lat: -34.397, lng: 150.644 },
       zoom: 8
+    });
+
+    var marker = new window.google.maps.Marker({
+      position: { lat: -34.397, lng: 150.644 },
+      map: map,
+      title: "Hello World!"
     });
   };
 
