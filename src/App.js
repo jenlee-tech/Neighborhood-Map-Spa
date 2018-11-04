@@ -1,6 +1,4 @@
-import React, {
-  Component
-} from "react";
+import React, { Component } from "react";
 import "./App.css";
 import axios from "axios";
 
@@ -51,8 +49,14 @@ class App extends Component {
       },
       zoom: 8
     });
+    //creates an infowindow
+    var infowindow = new window.google.maps.InfoWindow();
 
+    //show dynamic markers
     this.state.venues.map(myVenue => {
+      var contentString = myVenue.venue.name; //this one is weird
+
+      //create a marker
       var marker = new window.google.maps.Marker({
         position: {
           lat: myVenue.venue.location.lat,
@@ -60,6 +64,15 @@ class App extends Component {
         },
         map: map,
         title: myVenue.venue.name
+      });
+
+      //open an infowindow upon click
+      marker.addListener("click", function() {
+        //change content in infowindow
+        infowindow.setContent(contentString);
+
+        //Opens an infowindow
+        infowindow.open(map, marker);
       });
     });
 
@@ -73,11 +86,10 @@ class App extends Component {
   };
 
   render() {
-    return ( <
-      main >
-      does this work ? < div id = "map" / >
-      <
-      /main>
+    return (
+      <main>
+        does this work ? <div id="map" />
+      </main>
     );
   }
 }
