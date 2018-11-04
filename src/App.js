@@ -1,4 +1,6 @@
-import React, { Component } from "react";
+import React, {
+  Component
+} from "react";
 import "./App.css";
 import axios from "axios";
 
@@ -9,7 +11,6 @@ class App extends Component {
 
   componentDidMount() {
     this.getVenues();
-    this.loadMap();
   }
 
   loadMap = () => {
@@ -25,16 +26,18 @@ class App extends Component {
       //place keys here
 
       query: "food",
-      near: "Sydney",
+      near: "Hartford",
       v: "20182507"
     };
-
+    //handling asynchronous functions by putting loadMap in the then method
     axios
       .get(endPoint + new URLSearchParams(parameters))
       .then(response => {
         console.log(response.data.response.groups[0].items);
-        this.setState({ venues: response.data.response.groups[0].items });
-      })
+        this.setState({
+          venues: response.data.response.groups[0].items
+        });
+      }, this.loadMap())
       .catch(error => {
         console.log("ERROR!! " + error);
       });
@@ -42,22 +45,39 @@ class App extends Component {
 
   initMap = () => {
     var map = new window.google.maps.Map(document.getElementById("map"), {
-      center: { lat: -34.397, lng: 150.644 },
+      center: {
+        lat: 41.7621,
+        lng: -72.742
+      },
       zoom: 8
     });
 
+    this.state.venues.map(myVenue => {
+      var marker = new window.google.maps.Marker({
+        position: {
+          lat: myVenue.venue.location.lat,
+          lng: myVenue.venue.location.lng
+        },
+        map: map,
+        title: myVenue.venue.name
+      });
+    });
+
     var marker = new window.google.maps.Marker({
-      position: { lat: -34.397, lng: 150.644 },
-      map: map,
-      title: "Hello World!"
+      position: {
+        lat: 41.7621,
+        lng: -72.742
+      },
+      map: map
     });
   };
 
   render() {
-    return (
-      <main>
-        does this work ?<div id="map" />
-      </main>
+    return ( <
+      main >
+      does this work ? < div id = "map" / >
+      <
+      /main>
     );
   }
 }
