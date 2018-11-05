@@ -32,8 +32,20 @@
   }
 }
 
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 #map {
   height: 100vh;
+  width: 80%;
+  margin: 0;
+}
+
+h1 {
+  text-align: center;
+
 }
 
 html,
@@ -41,4 +53,20 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+}
+
+/*media queries*/
+@media screen and (max-width: 500px) {
+  .heading {
+    font-size: medium;
+    padding: 1em
+  }
+
+  .menu {
+    top: 0 !important;
+  }
+}
+
+li:focus {
+  background-color: brown;
 }

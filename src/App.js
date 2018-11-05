@@ -87,9 +87,14 @@ class App extends Component {
 
   render() {
     return (
-      <main>
-        does this work ? <div id="map" />
-      </main>
+      <div>
+        <div className="container">
+          <div className="text-input">
+            <div className="sidebar tex-input text-input-hidden" />
+            <div id="map" />
+          </div>
+        </div>
+      </div>
     );
   }
 }
