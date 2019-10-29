@@ -22,9 +22,10 @@ class App extends Component {
     const endPoint = "https://api.foursquare.com/v2/venues/explore?";
     const parameters = {
       //place keys here
-
-      query: "food",
-      near: "Hartford",
+      client_id: "TPH0HARWJI330EF4O0RJIYJR2V3WNWPA03BXBQPO3MWUCQF3",
+      client_secret: "NRQQEB0M10YV10LZBC20OHFN2IV0NBB1FGKPGQCIENH4W5JG",
+      query: "spa",
+      near: "West Hartford",
       v: "20182507"
     };
     //handling asynchronous functions by putting loadMap in the then method
@@ -47,14 +48,14 @@ class App extends Component {
         lat: 41.7621,
         lng: -72.742
       },
-      zoom: 8
+      zoom: 15
     });
     //creates an infowindow
     var infowindow = new window.google.maps.InfoWindow();
 
     //show dynamic markers
     this.state.venues.map(myVenue => {
-      var contentString = myVenue.venue.name; //this one is weird
+      var contentString = myVenue.venue.name + myVenue.venue.location.address; //this one is weird
 
       //create a marker
       var marker = new window.google.maps.Marker({
@@ -88,12 +89,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <div className="container">
-          <div className="text-input">
-            <div className="sidebar tex-input text-input-hidden" />
-            <div id="map" />
-          </div>
-        </div>
+        <div id="map" />
       </div>
     );
   }
